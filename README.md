@@ -45,7 +45,13 @@
 <br/>
 
 # Development
-![dev](https://repobeats.axiom.co/api/embed/288676838a75070e1fe493bb4b4bcfde4852cb86.svg "Repobeats analytics image")
+
+<p align="center">
+  <img 
+    src="https://repobeats.axiom.co/api/embed/288676838a75070e1fe493bb4b4bcfde4852cb86.svg" 
+    alt="Repobeats analytics image"
+  />
+</p>
 
 <div align="center">
 
