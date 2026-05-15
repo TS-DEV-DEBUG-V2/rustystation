@@ -31,6 +31,12 @@
   ![Watchers](https://img.shields.io/github/watchers/TS-DEV-DEBUG-V2/rustystation?style=for-the-badge&color=blueviolet)
   ![Commit Activity](https://img.shields.io/github/commit-activity/m/TS-DEV-DEBUG-V2/rustystation?style=for-the-badge&color=brightgreen)
   ![Open Source](https://img.shields.io/badge/Open%20Source-Yes-darkgreen?style=for-the-badge)
+  ![Rust Nightly](https://img.shields.io/badge/Rust-Nightly-orange?style=flat-square&logo=rust)
+  ![OpenGL](https://img.shields.io/badge/OpenGL-4.5-5586A4?style=flat-square&logo=opengl)
+  ![SDL2](https://img.shields.io/badge/SDL2-2.28-blue?style=flat-square)
+  ![MIPS R3000](https://img.shields.io/badge/CPU-MIPS%20R3000A-critical?style=flat-square)
+  ![GTE](https://img.shields.io/badge/GTE-Geometry%20Engine-blueviolet?style=flat-square)
+
 
   <br/>
 
@@ -54,12 +60,6 @@
 </p>
 
 <div align="center">
-
-  ![Rust Nightly](https://img.shields.io/badge/Rust-Nightly-orange?style=flat-square&logo=rust)
-  ![OpenGL](https://img.shields.io/badge/OpenGL-4.5-5586A4?style=flat-square&logo=opengl)
-  ![SDL2](https://img.shields.io/badge/SDL2-2.28-blue?style=flat-square)
-  ![MIPS R3000](https://img.shields.io/badge/CPU-MIPS%20R3000A-critical?style=flat-square)
-  ![GTE](https://img.shields.io/badge/GTE-Geometry%20Engine-blueviolet?style=flat-square)
 
 </div>
 
