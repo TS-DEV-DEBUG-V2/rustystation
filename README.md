@@ -40,7 +40,7 @@
 ![Save States](https://img.shields.io/badge/Save_States-Supported-brightgreen?style=for-the-badge)
 ![Controller](https://img.shields.io/badge/Controller-DualShock-003087?style=for-the-badge&logo=playstation&logoColor=white)
 ![Memory Card](https://img.shields.io/badge/Memory_Card-Emulated-003087?style=for-the-badge)
-![Disc Format](https://img.shields.io/badge/Format-BIN%2FCUE%20|%20ISO%20|%20CCD%20|%20IMG-blue?style=for-the-badge)
+![Disc Format](https://img.shields.io/badge/Format-BIN%20|%20CUE%20|%20ISO%20|%20CCD%20|%20IMG-blue?style=for-the-badge)
 ![Multitap](https://img.shields.io/badge/Multitap-Planned-orange?style=for-the-badge)
 ![PGXP](https://img.shields.io/badge/PGXP-Planned-orange?style=for-the-badge)
 ![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6?style=for-the-badge&logo=windows&logoColor=white)
