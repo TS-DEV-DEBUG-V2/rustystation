@@ -234,7 +234,7 @@ brew install sdl2
 
 On Windows, download the SDL2 development libraries from [libsdl.org](https://www.libsdl.org/download-2.0.php) and follow the [Rust-SDL2 setup guide](https://github.com/Rust-SDL2/rust-sdl2).
 
-**PS1 BIOS ROM** — You need a legitimate PS1 BIOS dump (typically `SCPH1001.BIN`). Place it in the `bios/` directory. RustyStation does not ship with any proprietary Sony firmware.
+**PS1 BIOS ROM** — You need a legitimate PS1 BIOS dump (typically `SCPH1001.BIN`). RustyStation does not ship with any proprietary Sony firmware. please try not to use any other bios such as Europe bios because RustyStation currently does not support Europe screen fixes. 
 
 ### Building from Source
 
@@ -247,19 +247,20 @@ cargo build --release
 ### Running a Game
 
 ```bash
-cargo run --release -- --bios bios/SCPH1001.BIN --disc path/to/game.bin
+cargo run --release bios/SCPH1001.BIN path/to/game.bin
 ```
 
 Or if you have a CUE sheet:
 
 ```bash
-cargo run --release -- --bios bios/SCPH1001.BIN --disc path/to/game.cue
+cargo run --release bios/SCPH1001.BIN path/to/game.cue
 ```
 
 ### Configuration
 
 RustyStation reads from a `config.toml` file in the project root. You can customize video scaling, audio latency, controller mappings, and debug options:
-
+### THIS WILL BE IMPLEMENTED SOON
+### THIS IS CURRENTLY NOT IMPLEMENTED
 ```toml
 [video]
 scale = 3
