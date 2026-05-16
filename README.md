@@ -26,7 +26,7 @@
 ![Dependencies](https://img.shields.io/badge/Dependencies-Up_To_Date-brightgreen?style=for-the-badge)
 ![Security](https://img.shields.io/badge/Security-Audited-brightgreen?style=for-the-badge)
 ![Memory Safe](https://img.shields.io/badge/Memory-Safe-brightgreen?style=for-the-badge&logo=rust&logoColor=white)
-![GPU](https://img.shields.io/badge/GPU-Vulkan%20|%20OpenGL-red?style=for-the-badge&logo=vulkan&logoColor=white)
+![GPU](https://img.shields.io/badge/GPU-%20OpenGL-red?style=for-the-badge&logo=vulkan&logoColor=white)
 ![Audio](https://img.shields.io/badge/Audio-SPU_Emulated-purple?style=for-the-badge)
 ![CPU](https://img.shields.io/badge/CPU-R3000A-003087?style=for-the-badge&logo=playstation&logoColor=white)
 ![GTE](https://img.shields.io/badge/GTE-Geometry_Engine-003087?style=for-the-badge)
