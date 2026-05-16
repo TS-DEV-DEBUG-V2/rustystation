@@ -47,16 +47,30 @@
 
 ### Crash Bandicoot
 
-<img src="https://github.com/TS-DEV-DEBUG-V2/rustystation/blob/main/assets/screenshot13.jpg" width="320" />
+<img
+  src="https://github.com/TS-DEV-DEBUG-V2/rustystation/blob/main/assets/screenshot13.jpg?raw=true"
+  width="400"
+  height="300"
+  style="image-rendering: pixelated;"
+/>
 
 ### Spyro The Dragon
 
-<img src="https://github.com/TS-DEV-DEBUG-V2/rustystation/blob/main/assets/screenshot14.jpg" width="256" />
+<img
+  src="https://github.com/TS-DEV-DEBUG-V2/rustystation/blob/main/assets/screenshot14.jpg?raw=true"
+  width="400"
+  height="300"
+  style="image-rendering: pixelated;"
+/>
 
 ### CTR - Crash Tag Team Racing
 
-<img src="https://github.com/TS-DEV-DEBUG-V2/rustystation/blob/main/assets/screenshot15.jpg" width="256" />
-
+<img
+  src="https://github.com/TS-DEV-DEBUG-V2/rustystation/blob/main/assets/screenshot15.jpg?raw=true"
+  width="400"
+  height="300"
+  style="image-rendering: pixelated;"
+/>
 # Development
 
 <p align="center">
