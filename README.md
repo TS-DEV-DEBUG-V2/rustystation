@@ -9,6 +9,7 @@
 
   > *"The original PlayStation changed gaming forever. RustyStation brings it back — faster, sharper, and built for the modern era."*
 
+  > *"This is going to be the next DuckStation."*
   <br/>
 
 ![Rust Edition](https://img.shields.io/badge/Rust_Edition-2021-000000?style=for-the-badge&logo=rust&logoColor=white)
