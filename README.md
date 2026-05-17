@@ -719,6 +719,7 @@ If you find this project interesting, consider giving it a star. It helps others
   **RustyStation** is released under the [MIT License](LICENSE).
 
   You are free to use, modify, and distribute this software. See the LICENSE file for full terms.
+  also becuz its MIT you can do whatever you want to this so have fun
 
   <br/>
 
