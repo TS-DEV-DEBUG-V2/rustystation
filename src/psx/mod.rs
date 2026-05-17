@@ -1,0 +1,192 @@
+mod adpcm;
+pub mod bus;
+mod cdrom;
+pub mod cpu;
+mod exp2;
+mod gpu;
+mod intc;
+mod mdec;
+pub mod rasteriser;
+mod sio0;
+mod spu;
+mod timekeeper;
+mod timers;
+
+use std::fs::File;
+use std::io;
+
+use serde::{Deserialize, Serialize};
+
+use crate::util;
+
+use self::bus::Bus;
+use self::cpu::R3000A;
+use self::sio0::controller::Controller;
+use self::timekeeper::Timekeeper;
+
+#[derive(Deserialize, Serialize)]
+pub struct System {
+    pub running: bool,
+
+    bus: Bus,
+    cpu: R3000A,
+
+    timekeeper: Timekeeper,
+
+    game_filepath: String,
+}
+
+impl System {
+    pub fn new(game_filepath: String) -> System {
+        Self::new_with_bios(game_filepath, None)
+    }
+
+    pub fn new_with_bios(game_filepath: String, custom_bios: Option<Vec<u8>>) -> System {
+        let bus = Bus::new_with_bios(game_filepath.as_str(), custom_bios.as_deref());
+        System {
+            running: true,
+
+            bus,
+            cpu: R3000A::new(),
+
+            timekeeper: Timekeeper::new(),
+
+            game_filepath,
+        }
+    }
+
+    pub fn reset(&mut self) {
+        self.bus.reset();
+        self.cpu.reset();
+
+        self.timekeeper.reset();
+    }
+
+    pub fn reload_host_files(&mut self) {
+        self.bus.cdrom().load_disc(&self.game_filepath);
+        self.bus.sio0().load_memcards();
+    }
+
+    pub fn run_frame(&mut self) {
+        while !self.bus.gpu_mut().frame_complete() {
+            while self.timekeeper.elapsed() < 128 {
+                self.cpu.run(&mut self.bus, &mut self.timekeeper);
+            }
+
+            self.timekeeper.sync_all(&mut self.bus);
+        }
+
+        self.bus.sio0().sync();
+    }
+
+    #[allow(dead_code)]
+    pub fn load_psexe(&mut self, filename: String) -> io::Result<()> {
+        let mut file = File::open(filename)?;
+
+        util::discard(&mut file, 0x10)?;
+
+        self.cpu.pc = util::read_u32(&mut file)?;
+        self.cpu.new_pc = self.cpu.pc + 4;
+
+        self.cpu.regs[28] = util::read_u32(&mut file)?;
+
+        let file_dest = util::read_u32(&mut file)? as usize;
+        let file_size = util::read_u32(&mut file)? as usize;
+
+        util::discard(&mut file, 0x10)?;
+
+        self.cpu.regs[29] = util::read_u32(&mut file)? + util::read_u32(&mut file)?;
+        self.cpu.regs[30] = self.cpu.regs[29];
+
+        util::discard(&mut file, 0x7c8)?;
+
+        let ram = self.bus.ram();
+
+        for i in 0..file_size {
+            ram[(file_dest + i) & 0x1fffff] = util::read_u8(&mut file)?;
+        }
+
+        Ok(())
+    }
+
+    pub fn get_audio_samples(&mut self) -> Vec<i16> {
+        self.bus.spu().drain_samples()
+    }
+
+    pub fn get_controller(&mut self) -> &mut Controller {
+        self.bus.sio0().controller()
+    }
+
+    pub fn get_disc_id(&mut self) -> String {
+        self.bus.cdrom().get_disc_id()
+    }
+
+    pub fn get_disc_id_raw(&mut self) -> String {
+        self.bus.cdrom().get_disc_id_raw()
+    }
+
+    #[allow(dead_code)]
+    pub fn get_display_origin(&self) -> (u32, u32) {
+        self.bus.gpu().get_display_origin()
+    }
+
+    pub fn get_display_size(&self) -> (u32, u32) {
+        self.bus.gpu().get_display_size()
+    }
+
+    pub fn pal_mode(&self) -> bool {
+        self.bus.gpu().pal_mode()
+    }
+
+    pub fn toggle_debug_dump(&mut self) {
+        self.bus.gpu_mut().toggle_debug_dump();
+    }
+
+    pub fn get_framebuffer(&self,
+                           data: &mut [u8],
+                           draw_full_vram: bool) {
+        self.bus.gpu().get_framebuffer(data, draw_full_vram)
+    }
+
+    #[allow(dead_code)]
+    pub fn dump_vram(&self) {
+        self.bus.gpu().dump_vram();
+    }
+
+    /// Copy `len` bytes of main RAM starting at `offset` (wrapped to the
+    /// 2 MiB main RAM size). Used by the RAM debugger window.
+    pub fn peek_ram(&self, offset: usize, len: usize, dst: &mut [u8]) {
+        let ram = self.bus.ram_ref();
+        let base = offset & 0x1F_FFFF;
+        let n = len.min(dst.len());
+        for i in 0..n {
+            dst[i] = ram[(base + i) & 0x1F_FFFF];
+        }
+    }
+
+    pub fn ram_size(&self) -> usize {
+        self.bus.ram_ref().len()
+    }
+
+    /// Snapshot of CPU state for debug-window rendering. Cheap (just copies a
+    /// few u32s).
+    pub fn debug_snapshot(&self) -> DebugSnapshot {
+        DebugSnapshot {
+            pc: self.cpu.pc,
+            current_pc: self.cpu.current_pc,
+            current_instruction: self.cpu.current_instruction,
+            regs: self.cpu.regs,
+            hi: self.cpu.hi,
+            lo: self.cpu.lo,
+        }
+    }
+}
+
+pub struct DebugSnapshot {
+    pub pc: u32,
+    pub current_pc: u32,
+    pub current_instruction: u32,
+    pub regs: [u32; 32],
+    pub hi: u32,
+    pub lo: u32,
+}
