@@ -574,7 +574,7 @@ RustyStation welcomes contributions of all kinds. Whether you are a seasoned emu
 
 ## Roadmap
 
-### Phase 1 — Foundation (Current)
+### Phase 1 — Foundation 
 - MIPS R3000A CPU with full instruction set
 - Memory map and bus architecture
 - Basic GPU rendering (flat polygons, VRAM transfers)
@@ -588,7 +588,7 @@ RustyStation welcomes contributions of all kinds. Whether you are a seasoned emu
 - Digital controller input
 - First commercial games booting
 
-### Phase 3 — Accuracy
+### Phase 3 — Accuracy (Current)
 - DMA linked-list mode for complex GPU ordering tables
 - GPU semi-transparency and texture blending modes
 - SPU reverb and CD-XA audio
