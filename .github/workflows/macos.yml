@@ -16,9 +16,13 @@ jobs:
 
       - name: Install SDL2 dev libraries
         run: brew install sdl2 sdl2_image sdl2_mixer sdl2_ttf
-
-      - name: Build RustyStation
-        run: cargo build --release
+        
+      - name: Configure CMake compatibility
+        run: |
+          export CMAKE_POLICY_VERSION_MINIMUM=3.5
+              cargo build --release
+            - name: Build RustyStation
+              run: cargo build --release
 
       - name: Upload Build
         uses: actions/upload-artifact@v4
