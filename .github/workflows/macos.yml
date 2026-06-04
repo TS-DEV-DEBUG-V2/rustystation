@@ -10,25 +10,18 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@stable
 
       - name: Install SDL2 dev libraries
-        run: |
-          brew update
-          brew install sdl2 sdl2_image sdl2_mixer sdl2_ttf
-
-      - name: Cache cargo
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: macos-cargo-${{ hashFiles('**/Cargo.lock') }}
+        run: brew install sdl2 sdl2_image sdl2_mixer sdl2_ttf
 
       - name: Build RustyStation
         run: cargo build --release
+
+      - name: Upload Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: RustyStation-macOS
+          path: target/release/
