@@ -1,0 +1,12 @@
+name: rustystation
+version: "0.1.0"
+about: A PlayStation emulator written in Rust
+args:
+    - GAME:
+        help: Path to game file (.bin / .img / .cue / .ccd). If omitted, the launcher opens.
+        required: false
+    - custom-bios:
+        long: custom-bios
+        value_name: PATH
+        takes_value: true
+        help: Load BIOS from this file at runtime instead of using the embedded one.
